@@ -28,7 +28,7 @@ public class ListMaker {
                         addItem();
                         break;
                     case "D":
-                        System.out.println("You chose to delete a line.");
+                        deleteItem();
                         break;
                     case "I":
                         System.out.println("You chose to insert a line.");
@@ -68,5 +68,22 @@ public class ListMaker {
         {
             String item = SafeInput.getNonZeroLengthString(in, "Enter the line to add: ");
             lines.add(item);
+        }
+
+        private static void deleteItem()
+        {
+            if (lines.size() == 0)
+            {
+                System.out.println("The list is empty. Nothing to delete.");
+                return;
+            }
+            int lineNum = SafeInput.getInt(in, "Enter the line number to delete (1 to " + lines.size() + "): ");
+            if (lineNum < 1 || lineNum > lines.size())
+            {
+                System.out.println("Invalid line number. Please try again.");
+                return;
+            }
+            lines.remove(lineNum - 1);
+            System.out.println("Line " + lineNum + " has been deleted.");
         }
 }
