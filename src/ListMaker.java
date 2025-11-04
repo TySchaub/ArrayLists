@@ -1,0 +1,67 @@
+import jdk.dynalink.beans.StaticClass;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ListMaker {
+
+   private static ArrayList<String> lines = new ArrayList<>();
+    static String MENU_PROMPT = "A - Add D - Delete I Insert P - Print Q - Quit";
+        public static void main(String[] args) {
+
+            Scanner in = new Scanner(System.in);
+
+
+            String cmd = "";
+
+            boolean done = false;
+
+            do {
+                showList();
+                showMenu();
+                System.out.println("");
+                cmd = SafeInput.getRegExString(in, "Enter Menu Choice: ", "[AaDdIiPpQq]").toUpperCase();
+
+                switch (cmd)
+                {
+                    case "A":
+                        System.out.println("You chose to add a line.");
+                        break;
+                    case "D":
+                        System.out.println("You chose to delete a line.");
+                        break;
+                    case "I":
+                        System.out.println("You chose to insert a line.");
+                        break;
+                    case "P":
+                        System.out.println("You chose to print the list.");
+                        break;
+                    case "Q":
+                        System.exit(0);
+                        break;
+                }
+            } while (!done);
+
+        }
+        private static void showList() {
+            if (lines.size() == 0)
+            {
+                System.out.println("The list is empty.");
+                return;
+            }
+            else {
+                for (String l : lines) {
+                    System.out.println(l);
+                }
+            }
+            System.out.println("\n-----------------------------------------------");
+        }
+
+        private static void showMenu()
+        {
+            System.out.println("-----------------------------------------------");
+            System.out.println(MENU_PROMPT);
+            System.out.println("-----------------------------------------------");
+        }
+}
