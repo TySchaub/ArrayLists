@@ -8,10 +8,9 @@ public class ListMaker {
 
    private static ArrayList<String> lines = new ArrayList<>();
     static String MENU_PROMPT = "A - Add D - Delete I Insert P - Print Q - Quit";
+    static Scanner in = new Scanner(System.in);
+
         public static void main(String[] args) {
-
-            Scanner in = new Scanner(System.in);
-
 
             String cmd = "";
 
@@ -26,7 +25,7 @@ public class ListMaker {
                 switch (cmd)
                 {
                     case "A":
-                        System.out.println("You chose to add a line.");
+                        addItem();
                         break;
                     case "D":
                         System.out.println("You chose to delete a line.");
@@ -63,5 +62,11 @@ public class ListMaker {
             System.out.println("-----------------------------------------------");
             System.out.println(MENU_PROMPT);
             System.out.println("-----------------------------------------------");
+        }
+
+        private static void addItem()
+        {
+            String item = SafeInput.getNonZeroLengthString(in, "Enter the line to add: ");
+            lines.add(item);
         }
 }

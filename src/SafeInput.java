@@ -9,7 +9,7 @@ public class SafeInput
      * @param prompt - Prompt to display to the user
      * @return - a non-empty string
      */
-    public static String getNonZeroLenString(Scanner pipe, String prompt)
+    public static String getNonZeroLengthString(Scanner pipe, String prompt)
     {
         String retString = "";
 
