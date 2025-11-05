@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class ListMaker {
 
    private static ArrayList<String> lines = new ArrayList<>();
-    static String MENU_PROMPT = "A - Add D - Delete I Insert P - Print Q - Quit";
+    static String MENU_PROMPT = "A - Add D - Delete I - Insert P - Print Q - Quit";
     static Scanner in = new Scanner(System.in);
 
         public static void main(String[] args) {
@@ -19,7 +19,6 @@ public class ListMaker {
             do {
                 showList();
                 showMenu();
-                System.out.println("");
                 cmd = SafeInput.getRegExString(in, "Enter Menu Choice: ", "[AaDdIiPpQq]").toUpperCase();
 
                 switch (cmd)
@@ -31,7 +30,7 @@ public class ListMaker {
                         deleteItem();
                         break;
                     case "I":
-                        System.out.println("You chose to insert a line.");
+                        insertItem();
                         break;
                     case "P":
                         System.out.println("You chose to print the list.");
@@ -46,11 +45,14 @@ public class ListMaker {
         private static void showList() {
             if (lines.size() == 0)
             {
+                System.out.println(" ");
                 System.out.println("The list is empty.");
                 return;
             }
             else {
-                for (String l : lines) {
+                for (String l : lines)
+                {
+                    System.out.println(" ");
                     System.out.println(l);
                 }
             }
@@ -85,5 +87,20 @@ public class ListMaker {
             }
             lines.remove(lineNum - 1);
             System.out.println("Line " + lineNum + " has been deleted.");
+        }
+
+        private static void insertItem()
+        {
+            if (lines.size() == 0)
+            {
+                System.out.println("The list is empty. Nothing to insert.");
+                return;
+            }
+            int lineNum = SafeInput.getInt(in, "Enter the line number to insert (1 to " + lines.size() + "): ");
+            if (lineNum < 1 || lineNum > lines.size())
+            {
+                System.out.println("Invalid line number. Please try again.");
+                return;
+            }
         }
 }
